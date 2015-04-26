@@ -57,6 +57,9 @@ var lyr_tovarnybubna = new ol.layer.Vector({
                 style: style_tovarnybubna,
                 title: "tovarny_bubna"
             });
+var group_Ortofotomapy = new ol.layer.Group({
+                                layers: [lyr_Ortofotomapa1938,lyr_Ortofotomapa1953,lyr_Ortofotomapa1975,lyr_Ortofotomapa19889,lyr_Ortofotomapa212mimovegetan], 
+                                title: "Ortofotomapy"});
 
 lyr_Ortofotomapa1938.setVisible(false);
 lyr_Ortofotomapa1953.setVisible(false);
@@ -66,4 +69,4 @@ lyr_Ortofotomapa212mimovegetan.setVisible(false);
 lyr_1884.setVisible(false);
 lyr_Pozemkovkatastr.setVisible(false);
 lyr_tovarnybubna.setVisible(true);
-var layersList = [baseLayer,lyr_Ortofotomapa1938,lyr_Ortofotomapa1953,lyr_Ortofotomapa1975,lyr_Ortofotomapa19889,lyr_Ortofotomapa212mimovegetan,lyr_1884,lyr_Pozemkovkatastr,lyr_tovarnybubna];
+var layersList = [baseLayer,group_Ortofotomapy,lyr_1884,lyr_Pozemkovkatastr,lyr_tovarnybubna];
