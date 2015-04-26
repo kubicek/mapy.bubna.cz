@@ -181,8 +181,11 @@
 
           for ( var i=0; i<keys.length;i++) {
             if (keys[i] == 'url') {
-              var win = window.open(feature.get(keys[i]), '_blank');
-              win.focus();
+              var url = feature.get(keys[i]);
+              if (url != '' & url != null) {
+                var win = window.open(url, '_blank');
+                win.focus();
+              }
               return;
             }
           }
