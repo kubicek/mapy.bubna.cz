@@ -173,45 +173,20 @@
       };
 
       var onSingleClick = function(evt) {
-        if (doHover){
-          return;
-        }
         var pixel = map.getEventPixel(evt.originalEvent);
-        var coord = evt.coordinate;
-        var popupField;
-        var popupText = '';
-        var currentFeature;
-        var currentFeatureKeys;
+        var keys;
         map.forEachFeatureAtPixel(pixel, function(feature, layer) {
-          currentFeature = feature;
-          currentFeatureKeys = currentFeature.getKeys();
+          keys = feature.getKeys();
           var field = popupLayers[layersList.indexOf(layer) - 1];
-          if (field == NO_POPUP){          
-          }
-          else if (field == ALL_FIELDS){
-            for ( var i=0; i<currentFeatureKeys.length;i++) {
-                if (currentFeatureKeys[i] != 'geometry') {
-                    popupField = currentFeatureKeys[i] + ': '+ currentFeature.get(currentFeatureKeys[i]);
-                    popupText = popupText + popupField+'<br>';
-                }
+
+          for ( var i=0; i<keys.length;i++) {
+            if (keys[i] == 'url') {
+              var win = window.open(feature.get(keys[i]), '_blank');
+              win.focus();
+              return;
             }
           }
-          else{
-            var value = feature.get(field);
-            if (value){
-              popupText = field + ': '+ value;
-            }  
-          }          
         });
-
-        if (popupText) {
-            overlayPopup.setPosition(coord);
-            content.innerHTML = popupText;
-            container.style.display = 'block';        
-        } else {
-          container.style.display = 'none';
-          closer.blur();
-        }
       };
 
       map.on('pointermove', function(evt) {
